@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="ar">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>أكاديمية التدريب</title>
+  <link rel="stylesheet" href="css.css/Untitled-1.css">
+</head>
+<body>
+  <!-- شريط التنقل -->
+  <header>
+    <div class="logo">
+      <h1>أكاديمية التدريب</h1>
+    </div>
+  </header>
+
+  <!-- قسم تسجيل الدخول -->
+  <section id="login-section" class="login-section">
+    <h2>تسجيل الدخول</h2>
+    <form id="loginForm" class="login-form">
+      <label for="username">اسم المستخدم:</label>
+      <input type="text" id="username" name="username" required>
+      <label for="password">كلمة المرور:</label>
+      <input type="password" id="password" name="password" required>
+      <button type="submit">دخول</button>
+    </form>
+  </section>
+
+  <!-- قسم الدورات التدريبية -->
+  <section id="courses-section" class="courses-section">
+    <h2>الدورات التدريبية</h2>
+    <div class="courses">
+      <div class="course">
+        <h3>دورة تطوير المواقع</h3>
+        <!-- صورة الدورة -->
+        <img src="doddwnload.png" alt="دورة تطوير المواقع" class="course-img">
+        <p>تعلم كيفية إنشاء مواقع الإنترنت باستخدام HTML, CSS, JavaScript.</p>
+        <button onclick="showDetails('webDevelopment')">التسجيل في الدورة</button>
+        <a href="https://www.youtube.com/watch?v=dQw4w9WgXcQ" target="_blank" class="video-link">شاهد الفيديو</a>
+      </div>
+      <div class="course">
+        <h3>دورة البرمجة بلغة بايثون</h3>
+        <!-- صورة الدورة -->
+        <img src="python-logo.png" alt="دورة البرمجة بلغة بايثون" class="course-img">
+        <p>دورة متكاملة لتعلم البرمجة بلغة بايثون من البداية.</p>
+        <button onclick="showDetails('python')">التسجيل في الدورة</button>
+        <a href="https://youtu.be/9OgOay9bRU8?si=utgDkq_4dd1IvHvK" target="_blank" class="video-link">شاهد الفيديو</a>
+      </div>
+      <div class="course">
+        <h3>دورة التسويق الإلكتروني</h3>
+        <!-- صورة الدورة -->
+        <img src="download.jpeg" alt="دورة التسويق الإلكتروني" class="course-img">
+        <p>دورة شاملة حول كيفية تسويق المنتجات والخدمات عبر الإنترنت.</p>
+        <button onclick="showDetails('digitalMarketing')">التسجيل في الدورة</button>
+        <a href="https://youtu.be/0fvYICr7m0M?si=xdpNvO5Y6DDDYV9r" target="_blank" class="video-link">شاهد الفيديو</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- تفاصيل الدورة -->
+  <section id="course-details-section" class="course-details">
+    <h3>تفاصيل الدورة</h3>
+    <p id="course-name">اسم الدورة:</p>
+    <p id="course-price">السعر:</p>
+    <p id="course-duration">المدة:</p>
+    <button onclick="showPaymentForm()">تأكيد التسجيل</button>
+  </section>
+
+  <!-- نموذج بيانات الدفع -->
+  <section id="payment-section" class="payment-form">
+    <h3>بيانات الدفع</h3>
+    <label for="card-name">اسم حامل البطاقة:</label>
+    <input type="text" id="card-name" required>
+    <label for="card-number">رقم البطاقة:</label>
+    <input type="text" id="card-number" required>
+    <label for="expiry-date">تاريخ انتهاء البطاقة:</label>
+    <input type="month" id="expiry-date" required>
+    <button type="submit" onclick="completeRegistration()">تأكيد الدفع</button>
+  </section>
+
+  <!-- رسالة تأكيد التسجيل -->
+  <section id="success-message" class="success-message">
+    <p>تم التسجيل بنجاح!</p>
+  </section>
+
+  <footer>
+    <p>&copy; 2025 أكاديمية التدريب | جميع الحقوق محفوظة</p>
+  </footer>
+
+  <script>
+    // إعدادات عرض الأقسام عند تحميل الصفحة
+    window.onload = function() {
+      document.getElementById("login-section").style.display = "block";
+      document.getElementById("courses-section").style.display = "none";
+      document.getElementById("course-details-section").style.display = "none";
+      document.getElementById("payment-section").style.display = "none";
+      document.getElementById("success-message").style.display = "none";
+    };
+
+    // التعامل مع تسجيل الدخول
+    document.getElementById("loginForm").addEventListener("submit", function(event) {
+      event.preventDefault();
+      const username = document.getElementById("username").value;
+      const password = document.getElementById("password").value;
+      if (username === "user" && password === "password123") {
+        document.getElementById("login-section").style.display = "none";
+        document.getElementById("courses-section").style.display = "block";
+      } else {
+        alert("اسم المستخدم أو كلمة المرور غير صحيحة");
+      }
+    });
+
+    // وظيفة لإظهار تفاصيل الدورة
+    function showDetails(course) {
+      let name, price, duration;
+      if (course === "webDevelopment") {
+        name = "دورة تطوير المواقع";
+        price = "200 دولار";
+        duration = "شهرين";
+      } else if (course === "python") {
+        name = "دورة البرمجة بلغة بايثون";
+        price = "250 دولار";
+        duration = "ثلاثة أشهر";
+      } else if (course === "digitalMarketing") {
+        name = "دورة التسويق الإلكتروني";
+        price = "150 دولار";
+        duration = "شهر";
+      }
+      document.getElementById("course-name").textContent = "اسم الدورة: " + name;
+      document.getElementById("course-price").textContent = "السعر: " + price;
+      document.getElementById("course-duration").textContent = "المدة: " + duration;
+      document.getElementById("courses-section").style.display = "none";
+      document.getElementById("course-details-section").style.display = "block";
+    }
+
+    // وظيفة لإظهار نموذج الدفع
+    function showPaymentForm() {
+      document.getElementById("course-details-section").style.display = "none";
+      document.getElementById("payment-section").style.display = "block";
+    }
+
+    // وظيفة لإتمام التسجيل وعرض رسالة النجاح
+    function completeRegistration() {
+      document.getElementById("payment-section").style.display = "none";
+      document.getElementById("success-message").style.display = "block";
+    }
+  </script>
+</body>
+</html>
